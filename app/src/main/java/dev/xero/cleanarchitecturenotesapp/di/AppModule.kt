@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import dev.xero.cleanarchitecturenotesapp.feature_note.data.data_source.NoteDatabase
 import dev.xero.cleanarchitecturenotesapp.feature_note.data.repository.NoteRepositoryImplementation
 import dev.xero.cleanarchitecturenotesapp.feature_note.domain.repository.NoteRepository
+import dev.xero.cleanarchitecturenotesapp.feature_note.domain.use_case.AddNote
 import dev.xero.cleanarchitecturenotesapp.feature_note.domain.use_case.DeleteNote
 import dev.xero.cleanarchitecturenotesapp.feature_note.domain.use_case.GetNotes
 import dev.xero.cleanarchitecturenotesapp.feature_note.domain.use_case.NoteUseCases
@@ -39,6 +40,7 @@ object AppModule {
 	fun provideNoteUseCases(repository: NoteRepository): NoteUseCases {
 		return NoteUseCases(
 			getNotes = GetNotes(repository),
+			addNote = AddNote(repository),
 			deleteNote = DeleteNote(repository)
 		)
 	}

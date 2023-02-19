@@ -23,3 +23,5 @@ data class Note(
 		)
 	}
 }
+
+class InvalidNoteException(msg: String): Exception(msg)
