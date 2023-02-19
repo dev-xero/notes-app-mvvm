@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.xero.cleanarchitecturenotesapp
+package dev.xero.cleanarchitecturenotesapp.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
