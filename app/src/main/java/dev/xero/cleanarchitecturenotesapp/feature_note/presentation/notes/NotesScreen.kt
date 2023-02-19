@@ -96,21 +96,21 @@ fun NotesScreen(
 							.clickable {
 
 							},
-							onDeleteClick = {
-								viewModel.onEvent(NotesEvent.DeleteNote(note))
-								scope.launch {
-									val result = scaffoldState.snackbarHostState.showSnackbar(
-										message = "Note deleted",
-										actionLabel = "Undo"
-									)
+						onDeleteClick = {
+							viewModel.onEvent(NotesEvent.DeleteNote(note))
+							scope.launch {
+								val result = scaffoldState.snackbarHostState.showSnackbar(
+									message = "Note deleted",
+									actionLabel = "Undo"
+								)
 
-									if (result == SnackbarResult.ActionPerformed) {
-										viewModel.onEvent(NotesEvent.RestoreNote)
-									}
+								if (result == SnackbarResult.ActionPerformed) {
+									viewModel.onEvent(NotesEvent.RestoreNote)
 								}
 							}
-						)
-					}
+						}
+					)
+					Spacer(modifier = Modifier.height(16.dp))
 				}
 			}
 		}
