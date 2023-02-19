@@ -3,6 +3,7 @@ package dev.xero.cleanarchitecturenotesapp.feature_note.presentation.add_edit_no
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
-	private val noteUseCases: NoteUseCases
+	private val noteUseCases: NoteUseCases,
+	savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
 	private val _noteTitle = mutableStateOf(NoteTextFieldState(
@@ -36,6 +38,27 @@ class AddEditNoteViewModel @Inject constructor(
 	val eventFlow = _eventFlow.asSharedFlow()
 
 	private var currentNoteId: Int? = null
+
+	init {
+		savedStateHandle.get<Int>("noteId")?.let { noteId ->
+			if(noteId != -1) {
+				viewModelScope.launch {
+					noteUseCases.getNote(noteId)?.also {note ->
+						currentNoteId = note.id
+						_noteTitle.value = noteTitle.value.copy(
+							text = note.title,
+							isHintVisible = false
+						)
+						_noteContent.value = noteContent.value.copy(
+							text = note.content,
+							isHintVisible = false
+						)
+						_noteColor.value = note.color
+					}
+				}
+			}
+		}
+	}
 
 	fun onEvent(event: AddEditNoteEvent) {
 		when(event) {
