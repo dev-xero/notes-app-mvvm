@@ -3,4 +3,6 @@
     <string name="order_title">Title</string>
     <string name="order_date">Date</string>
     <string name="order_color">Color</string>
+    <string name="order_descending">Descending</string>
+    <string name="order_ascending">Ascending</string>
 </resources>

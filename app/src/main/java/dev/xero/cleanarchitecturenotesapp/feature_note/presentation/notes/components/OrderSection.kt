@@ -50,5 +50,32 @@ fun OrderSection(
 				}
 			)
 		}
+
+		Spacer(modifier = Modifier.height(16.dp))
+
+		Row(modifier = Modifier.fillMaxWidth()) {
+			// ASCENDING ORDER BUTTON
+			DefaultRadioButton(
+				text = stringResource(R.string.order_ascending),
+				selected = noteOrder.orderType is OrderType.Ascending,
+				onSelect = {
+					onOrderChange(noteOrder.copy(
+						OrderType.Ascending
+					))
+				}
+			)
+			Spacer(modifier = Modifier.width(8.dp))
+
+			// DESCENDING ORDER BUTTON
+			DefaultRadioButton(
+				text = stringResource(R.string.order_descending),
+				selected = noteOrder.orderType is OrderType.Descending,
+				onSelect = {
+					onOrderChange(noteOrder.copy(
+						OrderType.Descending
+					))
+				}
+			)
+		}
 	}
 }
