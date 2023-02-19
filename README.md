@@ -5,4 +5,4 @@ A note taking app made using Kotlin and Jetpack Compose using the MVVM Architect
 - Jetpack Compose
 - MVVM Architecture
 - Room Database
-- Dependency Injection (Hilter)
+- Dependency Injection (Dagger - Hilt)
